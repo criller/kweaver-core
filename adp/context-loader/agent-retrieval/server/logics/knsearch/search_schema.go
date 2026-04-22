@@ -232,10 +232,10 @@ func buildMetricExpansionQuery(knID, query string, objectIDs []string, limit int
 					ValueFrom: interfaces.CondValueFromConst,
 				},
 				{
-					Field:      "scope_ref",
-					Operation:  interfaces.KnOperationTypeIn,
-					Value:      objectIDs,
-					ValueFrom:  interfaces.CondValueFromConst,
+					Field:     "scope_ref",
+					Operation: interfaces.KnOperationTypeIn,
+					Value:     objectIDs,
+					ValueFrom: interfaces.CondValueFromConst,
 				},
 				buildMetricRecallQuery(knID, query, limit).Cond,
 			},
@@ -327,12 +327,14 @@ func limitAnySlice(items []any, limit int) []any {
 	return items[:limit]
 }
 
+const relationReferencedObjectTypes = 2
+
 func filterObjectTypesByRelations(objectTypes, relationTypes []any) []any {
 	if len(objectTypes) == 0 || len(relationTypes) == 0 {
 		return objectTypes
 	}
 
-	referenced := make(map[string]struct{}, len(relationTypes)*2)
+	referenced := make(map[string]struct{}, len(relationTypes)*relationReferencedObjectTypes)
 	for _, rel := range relationTypes {
 		relMap, ok := rel.(map[string]any)
 		if !ok {

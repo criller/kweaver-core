@@ -81,9 +81,9 @@ func (m *testBknBackend) ListOntologyJobs(ctx context.Context, knID string, req 
 
 // testOntologyQuery is a configurable mock for DrivenOntologyQuery
 type testOntologyQuery struct {
-	queryObjectInstancesFunc   func(ctx context.Context, req *interfaces.QueryObjectInstancesReq) (*interfaces.QueryObjectInstancesResp, error)
-	queryInstanceSubgraphFunc  func(ctx context.Context, req *interfaces.QueryInstanceSubgraphReq) (*interfaces.QueryInstanceSubgraphResp, error)
-	subgraphCallCount          int
+	queryObjectInstancesFunc  func(ctx context.Context, req *interfaces.QueryObjectInstancesReq) (*interfaces.QueryObjectInstancesResp, error)
+	queryInstanceSubgraphFunc func(ctx context.Context, req *interfaces.QueryInstanceSubgraphReq) (*interfaces.QueryInstanceSubgraphResp, error)
+	subgraphCallCount         int
 }
 
 func (m *testOntologyQuery) QueryObjectInstances(ctx context.Context, req *interfaces.QueryObjectInstancesReq) (*interfaces.QueryObjectInstancesResp, error) {

@@ -349,8 +349,34 @@ func TestSearchMetricTypes_Success(t *testing.T) {
 			KnID: "kn-001",
 		}
 
+		respBody := []byte(`{
+			"entries": [
+				{
+					"id": "m_001",
+					"name": "cpu_usage",
+					"comment": "CPU usage metric",
+					"unit_type": "percent",
+					"unit": "%",
+					"metric_type": "atomic",
+					"scope_type": "object_type",
+					"scope_ref": "pod",
+					"time_dimension": {
+						"name": "timestamp"
+					},
+					"calculation_formula": {
+						"op": "avg"
+					},
+					"analysis_dimensions": [
+						{
+							"name": "cluster"
+						}
+					]
+				}
+			],
+			"total_count": 1
+		}`)
 		mockHTTPClient.EXPECT().PostNoUnmarshal(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).
-			Return(200, []byte(`{"entries":[{"id":"m_001","name":"cpu_usage","comment":"CPU usage metric","unit_type":"percent","unit":"%","metric_type":"atomic","scope_type":"object_type","scope_ref":"pod","time_dimension":{"name":"timestamp"},"calculation_formula":{"op":"avg"},"analysis_dimensions":[{"name":"cluster"}]}],"total_count":1}`), nil)
+			Return(200, respBody, nil)
 
 		resp, err := client.SearchMetricTypes(ctx, req)
 		convey.So(err, convey.ShouldBeNil)

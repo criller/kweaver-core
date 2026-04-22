@@ -257,10 +257,10 @@ func TestHandleGetLogicPropertiesValues_FixesDefaultParams(t *testing.T) {
 		handler := handleGetLogicPropertiesValues(stub)
 		req := mcpReq(map[string]any{
 			"kn_id":                "kn-001",
-			"ot_id":               "ot-001",
-			"query":               "last year revenue",
+			"ot_id":                "ot-001",
+			"query":                "last year revenue",
 			"_instance_identities": []any{map[string]any{"id": "inst_1"}},
-			"properties":          []any{"revenue"},
+			"properties":           []any{"revenue"},
 			"options": map[string]any{
 				"return_debug":      true,
 				"max_repair_rounds": 5,
