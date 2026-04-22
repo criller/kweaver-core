@@ -19,6 +19,7 @@
 本版为 `0.6.0`，新增 Skill 候选发现能力，并延续 TOON 压缩响应能力：
 
 - Schema 探索入口统一收口为 `search_schema`
+- `search_schema` 新增 `metric_types` 返回桶，并支持 `include_metric_types`
 - MCP 工具面移除 `kn_search` / `kn_schema_search`，仅暴露 `search_schema`
 - 新增标准 HTTP 接口 `POST /api/agent-retrieval/in/v1/kn/search_schema`
 - `POST /api/agent-retrieval/in/v1/kn/kn_search` 保留为兼容接口，继续兼容旧请求写法，但与 `search_schema` 共用收敛后的 Schema-only logic

@@ -319,13 +319,13 @@
           {
             "tool_id": "52b35175-cee3-41ea-91c0-1d70e8371f9c",
             "name": "search_schema",
-            "description": "统一的 Schema 探索入口。根据 query 返回相关 object_types、relation_types、action_types。",
+            "description": "统一的 Schema 探索入口。根据 query 返回相关 object_types、relation_types、action_types、metric_types。",
             "status": "enabled",
             "metadata_type": "openapi",
             "metadata": {
               "version": "5f617e18-c485-4b51-8b71-4590b4b77c1c",
               "summary": "search_schema",
-              "description": "统一的 Schema 探索入口。根据 query 返回相关 object_types、relation_types、action_types。",
+              "description": "统一的 Schema 探索入口。根据 query 返回相关 object_types、relation_types、action_types、metric_types。",
               "server_url": "http://agent-retrieval:30779",
               "path": "/api/agent-retrieval/in/v1/kn/search_schema",
               "method": "POST",
@@ -670,7 +670,7 @@
                     },
                     "SearchScope": {
                       "type": "object",
-                      "description": "Schema 探索范围。至少需要开启一种概念类型；不传时默认三类全开。",
+                      "description": "Schema 探索范围。至少需要开启一种概念类型；不传时默认四类全开。",
                       "properties": {
                         "include_object_types": {
                           "type": "boolean",
@@ -686,6 +686,11 @@
                           "type": "boolean",
                           "default": true,
                           "description": "是否包含动作类"
+                        },
+                        "include_metric_types": {
+                          "type": "boolean",
+                          "default": true,
+                          "description": "是否包含指标类"
                         }
                       }
                     },
@@ -711,6 +716,14 @@
                           "description": "动作类型列表",
                           "items": {
                             "$ref": "#/components/schemas/ActionType"
+                          }
+                        },
+                        "metric_types": {
+                          "type": "array",
+                          "description": "指标类型列表",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": true
                           }
                         }
                       }

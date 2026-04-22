@@ -66,6 +66,9 @@ func (m *testBknBackend) GetRelationTypeDetail(ctx context.Context, knID string,
 func (m *testBknBackend) SearchActionTypes(ctx context.Context, query *interfaces.QueryConceptsReq) (*interfaces.ActionTypeConcepts, error) {
 	return nil, nil
 }
+func (m *testBknBackend) SearchMetricTypes(ctx context.Context, query *interfaces.QueryConceptsReq) (*interfaces.MetricTypeConcepts, error) {
+	return nil, nil
+}
 func (m *testBknBackend) GetActionTypeDetail(ctx context.Context, knID string, atIDs []string, includeDetail bool) ([]*interfaces.ActionType, error) {
 	return nil, nil
 }

@@ -158,7 +158,7 @@ curl -X POST "http://agent-retrieval:30779/api/agent-retrieval/in/v1/kn/query_ob
 > 接口定义：[docs/apis/api_private/search_schema.yaml](../apis/api_private/search_schema.yaml)
 
 - API：`POST /api/agent-retrieval/in/v1/kn/search_schema`
-- 作用：根据 query 返回与之相关的 `object_types / relation_types / action_types`
+- 作用：根据 query 返回与之相关的 `object_types / relation_types / action_types / metric_types`
 - 说明：这是新版本标准 Schema 探索接口，也是 MCP / Agent 唯一推荐入口。
 
 请求体（关键字段）：
@@ -167,14 +167,14 @@ curl -X POST "http://agent-retrieval:30779/api/agent-retrieval/in/v1/kn/query_ob
 | :--- | :--- | :--- |
 | `query` | 是 | 用户自然语言查询 |
 | `kn_id` | 否 | Header `x-kn-id` 未传时，可在 body 中兜底传入 |
-| `search_scope` | 否 | 是否包含对象类/关系类/动作类；至少开启一种，默认全开 |
+| `search_scope` | 否 | 是否包含对象类/关系类/动作类/指标类；至少开启一种，默认全开 |
 | `max_concepts` | 否 | 最大候选概念数量（默认 10） |
 | `schema_brief` | 否 | 是否返回精简 Schema（默认 false） |
 | `enable_rerank` | 否 | 是否启用关系类型 Rerank（默认 true） |
 
 返回要点：
 
-- `object_types / relation_types / action_types`：分组后的 Schema 结果
+- `object_types / relation_types / action_types / metric_types`：分组后的 Schema 结果
 - 不返回实例数据，不返回 `nodes` / `message`
 
 Data Agent 配置（建议）：
