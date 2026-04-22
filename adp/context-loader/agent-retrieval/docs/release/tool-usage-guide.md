@@ -73,7 +73,8 @@ curl -X POST "http://agent-retrieval:30779/api/agent-retrieval/in/v1/kn/search_s
     "search_scope": {
       "include_object_types": true,
       "include_relation_types": true,
-      "include_action_types": true
+      "include_action_types": true,
+      "include_metric_types": true
     },
     "max_concepts": 10
   }'

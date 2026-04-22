@@ -9,6 +9,7 @@ info:
     - `object_types`
     - `relation_types`
     - `action_types`
+    - `metric_types`
 
     该接口固定为 Schema-only，不返回实例数据，也不承担实例检索。
 servers:
@@ -106,7 +107,9 @@ components:
     SearchScope:
       type: object
       description: |
-        Schema 探索范围。至少需要开启一种概念类型；不传时默认三类全开。
+        Schema 探索范围。至少需要开启一种概念类型；不传时默认四类全开。
+        `search_scope` 仅约束响应输出，不阻断系统内部使用相关线索辅助召回。
+        四个资源开关不能同时为 `false`；若同时为 `false`，接口返回参数错误。
       properties:
         include_object_types:
           type: boolean
@@ -120,6 +123,10 @@ components:
           type: boolean
           default: true
           description: 是否包含动作类
+        include_metric_types:
+          type: boolean
+          default: true
+          description: 是否包含指标类
 
     SearchSchemaResponse:
       type: object
@@ -139,6 +146,12 @@ components:
         action_types:
           type: array
           description: 动作类型列表
+          items:
+            type: object
+            additionalProperties: true
+        metric_types:
+          type: array
+          description: 指标类型列表
           items:
             type: object
             additionalProperties: true
